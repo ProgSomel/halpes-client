@@ -11,11 +11,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
-import axios from "axios";
+// import axios from "axios";
+import { GithubAuthProvider } from "firebase/auth/cordova";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const githubprovider = new GithubAuthProvider();``
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -31,20 +34,26 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const signInWithGoogle = () => {
+  const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
+  //! Github login 
+  const githubLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubprovider);
+}
+
   const logOut = async () => {
     setLoading(true);
-    await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-      withCredentials: true
-    });
+    // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+    //   withCredentials: true
+    // });
     return signOut(auth);
   };
 
-  const updateUserProfile = (name, photo) => {
+  const updatingProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -69,9 +78,10 @@ const AuthProvider = ({ children }) => {
     setLoading,
     createUser,
     signIn,
-    signInWithGoogle,
+    googleLogin,
     logOut,
-    updateUserProfile,
+    updatingProfile,
+    githubLogin
   };
 
   return (
