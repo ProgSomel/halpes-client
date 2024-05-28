@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import hearIcon from "../../assets/Icon/heart.png"
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
 
   return (
-    <div className="container mx-auto px-2 md:px-8 shadow-lg rounded-md p-2">
-      <div className="navbar bg-base-100">
+    <div className="container mx-auto px-2 md:px-8 shadow-lg  p-2 bg-[#3D3C42] text-white">
+      <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -34,7 +35,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange-500" : ""
+                  isPending ? "pending text-red-400" : isActive ? "text-orange-500 " : " "
                 }
               >
                 Home
@@ -51,7 +52,7 @@ const Navbar = () => {
                 Need Volunteer
               </NavLink>
             </li>
-              <li>
+              <li className="text-black">
                 <a className="font-pacifico italic">My Profile</a>
                 <ul className="p-2">
                   <li>
@@ -59,7 +60,7 @@ const Navbar = () => {
                   <NavLink
                     to="/addVolunteer"
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "text-orange-500" : ""
+                      isPending ? "pending " : isActive ? "text-orange-500" : " text-black"
                     }
                   >
                     Add Volunteer
@@ -70,7 +71,7 @@ const Navbar = () => {
                   <NavLink
                     to="/manageMyPost"
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "text-orange-500" : ""
+                      isPending ? "pending" : isActive ? "text-orange-500" : "text-black"
                     }
                   >
                     Manage My Post
@@ -81,7 +82,7 @@ const Navbar = () => {
               
             </ul>
           </div>
-          <a className=" text-4xl font-pacifico italic">Halpes</a>
+          <a className=" text-4xl font-pacifico italic flex text-green-700">Halpes <sup><img className="w-[50px]" src={hearIcon} alt="" /></sup></a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex items-center gap-8">
@@ -121,7 +122,7 @@ const Navbar = () => {
                   <NavLink
                     to="/addVolunteer"
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "text-orange-500" : ""
+                      isPending ? "pending" : isActive ? "text-orange-500" : "text-black"
                     }
                   >
                     Add Volunteer
@@ -131,7 +132,7 @@ const Navbar = () => {
                   <NavLink
                     to="/manageMyPost"
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "text-orange-500" : ""
+                      isPending ? "pending" : isActive ? "text-orange-500" : "text-black"
                     }
                   >
                     Manage My Post

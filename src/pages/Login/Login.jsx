@@ -71,7 +71,7 @@ const Login = () => {
     <div className="mt-12 max-w-lg mx-auto  px-2">
       <h1 className="text-center text-orange-500 italic text-5xl font-bold">Welcome Back</h1>
       <div className="px-2 md:px-4 lg:px-8 md:mb-12 flex flex-col-reverse md:flex-row items-center">
-      <div className="  flex justify-center">
+      <div className="  flex justify-center ">
         <Lottie className="md:h-[500px] w-full" animationData={loginLottie}></Lottie>
       </div>
       <div>
