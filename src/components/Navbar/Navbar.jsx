@@ -35,7 +35,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending text-red-400" : isActive ? "text-orange-500 " : " "
+                  isPending ? "pending text-red-400" : isActive ? "text-orange-500 " : ""
                 }
               >
                 Home
@@ -54,20 +54,20 @@ const Navbar = () => {
             </li>
               <li className="text-black">
                 <a className="font-pacifico italic">My Profile</a>
-                <ul className="p-2">
+                <ul className="p-2 ">
                   <li>
-                  <li className="font-pacifico italic">
+                  <li className="font-pacifico italic ">
                   <NavLink
                     to="/addVolunteer"
                     className={({ isActive, isPending }) =>
                       isPending ? "pending " : isActive ? "text-orange-500" : " text-black"
                     }
                   >
-                    Add Volunteer
+                    Add Volunteer Post
                   </NavLink>
                 </li>
                   </li>
-                  <li className="font-pacifico italic">
+                  <li className="font-pacifico italic ">
                   <NavLink
                     to="/manageMyPost"
                     className={({ isActive, isPending }) =>
@@ -90,7 +90,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange-500" : ""
+                  isPending ? "pending text-white" : isActive ? "text-orange-500" : "text-white"
                 }
               >
                 Home
@@ -101,14 +101,14 @@ const Navbar = () => {
               <NavLink
                 to="/needVolunteer"
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-orange-500" : ""
+                  isPending ? "pending text-white" : isActive ? "text-orange-500" : ""
                 }
               >
                 Need Volunteer
               </NavLink>
             </li>
 
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end z-10">
               <div tabIndex={0} role="button" className="">
                 <div className="">
                   <h1 className="text-nowrap font-pacifico italic ">My Profile</h1>

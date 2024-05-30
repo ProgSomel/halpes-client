@@ -5,6 +5,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Registration from "../pages/Registration/Registration";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AddVolunteer from "../pages/AddVolunteer/AddVolunteer";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +25,12 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Registration></Registration>
+            },
+            {
+                path: "/addVolunteer",
+                element: <PrivateRoute>
+                    <AddVolunteer></AddVolunteer>
+                </PrivateRoute>
             }
         ] 
     }
