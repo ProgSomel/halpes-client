@@ -1,6 +1,10 @@
 import Banner from "../Banner/Banner";
+import Carousel from "../../../components/Carousel/Carousel";
+
 
 const Home = () => {
+  
+
   return (
     <div>
       <Banner></Banner>
@@ -20,7 +24,7 @@ const Home = () => {
             <div className="flex gap-2">
               <div>
                 <img
-                className="w-[200px]"
+                  className="w-[200px]"
                   src="https://bighearts.wgl-demo.net/wp-content/uploads/2020/08/icon-box_05.png"
                   alt=""
                 />
@@ -36,7 +40,7 @@ const Home = () => {
             <div className="flex gap-2">
               <div>
                 <img
-                className="w-[200px]"
+                  className="w-[200px]"
                   src="https://bighearts.wgl-demo.net/wp-content/uploads/2020/08/icon-box_07.png"
                   alt=""
                 />
@@ -56,7 +60,7 @@ const Home = () => {
               <div className="flex gap-2">
                 <div>
                   <img
-                  className="w-[200px]"
+                    className="w-[200px]"
                     src="https://bighearts.wgl-demo.net/wp-content/uploads/2020/08/icon-box_06.png"
                     alt=""
                   />
@@ -72,7 +76,7 @@ const Home = () => {
               <div className="flex gap-2">
                 <div>
                   <img
-                  className="w-[200px]"
+                    className="w-[200px]"
                     src="https://bighearts.wgl-demo.net/wp-content/uploads/2020/08/icon-box_08.png"
                     alt=""
                   />
@@ -80,7 +84,8 @@ const Home = () => {
                 <div className="">
                   <h1 className="font-poetsen text-2xl mb-2">Education</h1>
                   <p className="font-mono  ">
-                  We help local nonprofits access the funding, tools, training, and support they need to become more.
+                    We help local nonprofits access the funding, tools,
+                    training, and support they need to become more.
                   </p>
                 </div>
               </div>
@@ -88,7 +93,18 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Need Volunteer Now Section  */}
+      <div className="container mx-auto px-4">
+        <div className="mb-10 container mx-auto px-6 space-y-3">
+          <h1 className="uppercase font-pacifico text-orange-400">WE help Around the World</h1>
+          <p className="font-poetsen text-4xl">Volunteer Needs Now</p>
+        </div>
+      <Carousel></Carousel>
+      </div>
+     
+      </div>
+    
   );
 };
 
