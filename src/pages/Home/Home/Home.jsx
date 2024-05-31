@@ -9,9 +9,9 @@ const Home = () => {
     <div>
       <Banner></Banner>
       {/* Connects Non Profit  */}
-      <div className="flex flex-col md:flex-row py-20 lg:py-32 px-12 gap-12">
+      <div className="flex flex-col md:flex-row py-20 lg:py-32 px-12 gap-12 bg-[#f6f1f1]">
         <div>
-          <h1 className="font-poetsen text-3xl ">
+          <h1 className="font-poetsen text-3xl text-center md:text-left">
             Connects Nonprofits, <br />
             Donors, & Companies <br />
             in Every Country
@@ -95,7 +95,7 @@ const Home = () => {
       </div>
 
       {/* Need Volunteer Now Section  */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 mt-12">
         <div className="mb-10 container mx-auto px-6 space-y-3">
           <h1 className="uppercase font-pacifico text-orange-400">WE help Around the World</h1>
           <p className="font-poetsen text-4xl">Volunteer Needs Now</p>

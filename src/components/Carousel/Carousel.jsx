@@ -4,6 +4,7 @@ import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Carousel = () => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
@@ -85,9 +86,11 @@ const Carousel = () => {
                 </p>
               </div>
               <div className="card-actions w-full mt-12">
+                <Link to={`/viewDetails/${volunteer?._id}`}>
                 <button className="btn bg-orange-400 text-white font-poetsen w-full hover:bg-orange-600">
                   View Details
                 </button>
+                </Link>
               </div>
             </div>
           </div>
