@@ -30,7 +30,7 @@ const AddVolunteer = () => {
       numberOfVolunteersNeeded,
       deadline,
       organizerName: user?.displayName,
-      organizerNameOrEmail: user?.email,
+      organizerEmail: user?.email,
     };
     try {
       const response = await axios.post(

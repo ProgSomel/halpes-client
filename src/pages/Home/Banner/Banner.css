@@ -1,0 +1,15 @@
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #f97316; 
+  
+  padding: 0.5rem; 
+  border-radius: 50%; 
+  transition: background-color 0.3s ease; 
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #f97316; 
+  color: white; 
+}

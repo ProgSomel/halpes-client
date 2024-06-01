@@ -36,7 +36,7 @@ const Carousel = () => {
       spaceBetween={30}
       loop={true}
       autoplay={{
-        delay: 2000,
+        delay: 1700,
         disableOnInteraction: false,
       }}
       pagination={{
