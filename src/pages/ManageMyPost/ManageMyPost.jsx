@@ -6,15 +6,14 @@ import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
   const [myVolunteerPosts, setMyVolunteerPosts] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
 
-
   useEffect(() => {
-   
     fetchData();
   }, [user?.email]);
 
@@ -61,32 +60,69 @@ const ManageMyPost = () => {
     }
   };
 
-
-//!   handle Delete 
-const handleDelete = async (id) => {
-    try{
-        await axios.delete(`http://localhost:5000/volunteer/${id}`);
-        toast.success(`Post Successfully Deleted`);
-        fetchData();
-    }catch(error) {
-        toast.error(error?.message);
+  //!   handle Delete
+  const handleDelete = async (id) => {
+    try {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn bg-red-500 hover:bg-red-600",
+          cancelButton: "btn bg-green-400 hover:bg-green-500",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            await axios.delete(`http://localhost:5000/volunteer/${id}`);
+      toast.success(`Post Successfully Deleted`);
+      fetchData();
+            swalWithBootstrapButtons.fire({
+              title: "Deleted!",
+              text: "Your Post has been deleted.",
+              icon: "success",
+            });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire({
+              title: "Cancelled",
+              text: "Your Post  is safe :)",
+              icon: "error",
+            });
+          }
+        });
+      
+    } catch (error) {
+      toast.error(error?.message);
     }
-}
+  };
 
   return (
     <div className="flex lg:justify-center my-8 overflow-auto ">
       <Tabs>
-        <TabList className="bg-red-300  ">
-          <Tab>
-            <h1 className="font-poetsen text-orange-600">
-              My Need Volunteer Post
-            </h1>
-          </Tab>
-          <Tab>
-            <h1 className="font-poetsen text-orange-600">
-              My Volunteer Request Post
-            </h1>
-          </Tab>
+        <TabList className=" flex  md:justify-center  mb-12 border-b-2">
+          <div className="flex bg-orange-200 ">
+            <Tab>
+              <h1 className="font-poetsen text-orange-600">
+                My Need Volunteer Post
+              </h1>
+            </Tab>
+            <Tab>
+              <h1 className="font-poetsen text-orange-600">
+                My Need Volunteer Post
+              </h1>
+            </Tab>
+          </div>
         </TabList>
 
         <TabPanel className="">
@@ -298,7 +334,10 @@ const handleDelete = async (id) => {
                         </dialog>
                       </td>
                       <td>
-                        <button onClick={()=> handleDelete(volunteerPost?._id)} className="btn bg-red-500 text-white font-pacifico hover:bg-red-700">
+                        <button
+                          onClick={() => handleDelete(volunteerPost?._id)}
+                          className="btn bg-red-500 text-white font-pacifico hover:bg-red-700"
+                        >
                           Delete
                         </button>
                       </td>
