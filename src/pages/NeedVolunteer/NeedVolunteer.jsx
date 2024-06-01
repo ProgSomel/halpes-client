@@ -19,7 +19,6 @@ const NeedVolunteer = () => {
     e.preventDefault();
     const form = e.target;
     const searchText = form.search.value;
-    console.log(searchText);
 
     const {data} = await axios.get(`http://localhost:5000/volunteer?search=${searchText}`);
 

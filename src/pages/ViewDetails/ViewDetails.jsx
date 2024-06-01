@@ -17,7 +17,7 @@ const ViewDetails = () => {
         );
         setVolunteerPost(data);
       } catch (error) {
-        console.log(error);
+        toast.error(error?.message);
       }
     };
     fetchData();
