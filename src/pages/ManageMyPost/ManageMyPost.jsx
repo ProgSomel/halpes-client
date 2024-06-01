@@ -133,18 +133,18 @@ const ManageMyPost = () => {
           text: "You won't be able to revert this!",
           icon: "warning",
           showCancelButton: true,
-          confirmButtonText: "Yes, delete it!",
-          cancelButtonText: "No, cancel!",
+          confirmButtonText: "Yes, Cancel it!",
+          cancelButtonText: "No! ",
           reverseButtons: true,
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            await axios.delete(`http://localhost:5000/volunteer/${id}`);
-      toast.success(`Post Successfully Deleted`);
-      fetchPostData();
+            await axios.delete(`http://localhost:5000/beAVolunteer/${id}`);
+      toast.success(`Request Successfully Cancelled`);
+      fetchRequestPostData();
             swalWithBootstrapButtons.fire({
-              title: "Deleted!",
-              text: "Your Post has been deleted.",
+              title: "Cancelled!",
+              text: "Your Request has been cancelled.",
               icon: "success",
             });
           } else if (
@@ -152,8 +152,8 @@ const ManageMyPost = () => {
             result.dismiss === Swal.DismissReason.cancel
           ) {
             swalWithBootstrapButtons.fire({
-              title: "Cancelled",
-              text: "Your Post  is safe :)",
+              title: "Safed",
+              text: "Your Request  is safe :)",
               icon: "error",
             });
           }
@@ -408,7 +408,7 @@ const ManageMyPost = () => {
         <TabPanel className="">
           {myVolunteerRequestPosts.length <= 0 ? (
             <div className="flex justify-center mt-8">
-              <h1 className="font-poetsen text-2xl">You don't have any post</h1>
+              <h1 className="font-poetsen text-2xl">You don't have any Request for  post</h1>
             </div>
           ) : (
             <div className="overflow-x-auto mt-5 ">
