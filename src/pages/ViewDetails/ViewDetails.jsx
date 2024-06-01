@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
 const ViewDetails = () => {

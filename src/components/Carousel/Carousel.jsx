@@ -86,7 +86,7 @@ const Carousel = () => {
                 </p>
               </div>
               <div className="card-actions w-full mt-12">
-                <Link to={`/viewDetails/${volunteer?._id}`}>
+                <Link className="w-full" to={`/viewDetails/${volunteer?._id}`}>
                 <button className="btn bg-orange-400 text-white font-poetsen w-full hover:bg-orange-600">
                   View Details
                 </button>

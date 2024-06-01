@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AddVolunteer from "../pages/AddVolunteer/AddVolunteer";
 import PrivateRoute from "./PrivateRoute";
 import ViewDetails from "../pages/ViewDetails/ViewDetails";
+import NeedVolunteer from "../pages/NeedVolunteer/NeedVolunteer";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <ViewDetails></ViewDetails>
                 </PrivateRoute>
+            },
+            {
+                path: "/needVolunteer",
+                element: <NeedVolunteer></NeedVolunteer>
             }
         ] 
     }
