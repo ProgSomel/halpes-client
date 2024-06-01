@@ -11,17 +11,28 @@ import Swal from "sweetalert2";
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
   const [myVolunteerPosts, setMyVolunteerPosts] = useState([]);
+  const [myVolunteerRequestPosts, setMyVolunteerRequestPosts] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
-    fetchData();
+    fetchPostData();
+    fetchRequestPostData();
+
   }, [user?.email]);
 
-  const fetchData = async () => {
+  const fetchPostData = async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/volunteer/volunteerByEmail/${user?.email}`
-    );
+        `http://localhost:5000/volunteer/volunteerByEmail/${user?.email}`
+      );
     setMyVolunteerPosts(data);
+  };
+
+  const fetchRequestPostData = async () => {
+    
+    const { data } = await axios.get(
+        `http://localhost:5000/beAvolunteer/${user?.email}`
+      );
+    setMyVolunteerRequestPosts(data);
   };
 
   //!   handle Update
@@ -53,7 +64,7 @@ const ManageMyPost = () => {
       );
       if (response) {
         toast.success("Successfully updated");
-        fetchData();
+        fetchPostData();
       }
     } catch (error) {
       toast.error(error?.message);
@@ -84,7 +95,53 @@ const ManageMyPost = () => {
           if (result.isConfirmed) {
             await axios.delete(`http://localhost:5000/volunteer/${id}`);
       toast.success(`Post Successfully Deleted`);
-      fetchData();
+      fetchPostData();
+            swalWithBootstrapButtons.fire({
+              title: "Deleted!",
+              text: "Your Post has been deleted.",
+              icon: "success",
+            });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire({
+              title: "Cancelled",
+              text: "Your Post  is safe :)",
+              icon: "error",
+            });
+          }
+        });
+      
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  const handleCancel = async (id) => {
+    try {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn bg-red-500 hover:bg-red-600",
+          cancelButton: "btn bg-green-400 hover:bg-green-500",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            await axios.delete(`http://localhost:5000/volunteer/${id}`);
+      toast.success(`Post Successfully Deleted`);
+      fetchPostData();
             swalWithBootstrapButtons.fire({
               title: "Deleted!",
               text: "Your Post has been deleted.",
@@ -119,7 +176,7 @@ const ManageMyPost = () => {
             </Tab>
             <Tab>
               <h1 className="font-poetsen text-orange-600">
-                My Need Volunteer Post
+                My  Volunteer Request Post
               </h1>
             </Tab>
           </div>
@@ -348,8 +405,61 @@ const ManageMyPost = () => {
             </div>
           )}
         </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
+        <TabPanel className="">
+          {myVolunteerRequestPosts.length <= 0 ? (
+            <div className="flex justify-center mt-8">
+              <h1 className="font-poetsen text-2xl">You don't have any post</h1>
+            </div>
+          ) : (
+            <div className="overflow-x-auto mt-5 ">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr className="font-pacifico font-bold text-xl ">
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Organizer Name</th>
+                    <th>Organizer Email</th>
+                    <th>Cancel</th>
+                  </tr>
+                </thead>
+                <tbody className="">
+                  {myVolunteerRequestPosts?.map((volunteerPost) => (
+                    <tr key={volunteerPost?._id}>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img
+                                src={volunteerPost?.thumbnail}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="font-poetsen">{volunteerPost?.title}</td>
+                      <td className="font-pacifico">
+                        {volunteerPost?.organizerName}
+                      </td>
+                      <td className="font-poetsen">
+                        {volunteerPost?.organizerEmail}
+                      </td>
+                     
+                      <td>
+                        <button
+                          onClick={() => handleCancel(volunteerPost?._id)}
+                          className="btn bg-red-500 text-white font-pacifico hover:bg-red-700"
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </TabPanel>
       </Tabs>
     </div>

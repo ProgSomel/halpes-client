@@ -82,7 +82,7 @@ const Navbar = () => {
               
             </ul>
           </div>
-          <a className=" text-4xl font-pacifico italic flex text-green-700">Halpes <sup><img className="w-[50px]" src={hearIcon} alt="" /></sup></a>
+          <Link to="/" className=" text-4xl font-pacifico italic flex text-green-700">Halpes <sup><img className="w-[50px]" src={hearIcon} alt="" /></sup></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex items-center gap-8">

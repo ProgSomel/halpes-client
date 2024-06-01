@@ -28,6 +28,7 @@ const ViewDetails = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
+    const thumbnail = form.picture.value;
     const description = form.description.value;
     const category = form.category.value;
     const location = form.location.value;
@@ -41,6 +42,7 @@ const ViewDetails = () => {
     const status = form.status.value;
     const beAVolunteerData = {
       volunteerPostId: volunteerPost?._id,
+      thumbnail,
       title,
       description,
       category,
@@ -89,6 +91,7 @@ const ViewDetails = () => {
       <div className="card bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 shadow-lg rounded-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-100">
         <figure className="w-full h-[200px] sm:h-[400px] overflow-hidden">
           <img
+          
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
             src={volunteerPost?.thumbnail}
             alt={volunteerPost?.title}
@@ -117,7 +120,7 @@ const ViewDetails = () => {
             </button>
             <dialog id="my_modal_3" className="modal mt-7">
               <div className="modal-box bg-gradient-to-r from-purple-200 via-pink-200 to-red-200 rounded-lg shadow-xl">
-                <div className="container mx-auto p-6">
+                <div className="">
                   <div className="bg-white shadow-lg rounded-lg p-6">
                     <h2 className="text-3xl font-semibold mb-5 font-poetsen text-orange-400">
                       Volunteer Request Form
@@ -135,6 +138,18 @@ const ViewDetails = () => {
                         ✕
                       </button>
                       {/* Post Details */}
+                      <div>
+                        <label className="block text-lg font-medium text-gray-700 font-pacifico">
+                          Thumbnail URL
+                        </label>
+                        <input
+                          type="text"
+                          name="picture"
+                          className="p-2 border rounded w-full bg-gray-100"
+                          value={volunteerPost?.thumbnail}
+                          readOnly
+                        />
+                      </div>
                       <div>
                         <label className="block text-lg font-medium text-gray-700 font-pacifico">
                           Post Title
