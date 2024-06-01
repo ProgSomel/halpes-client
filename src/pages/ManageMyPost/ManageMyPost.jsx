@@ -61,6 +61,18 @@ const ManageMyPost = () => {
     }
   };
 
+
+//!   handle Delete 
+const handleDelete = async (id) => {
+    try{
+        await axios.delete(`http://localhost:5000/volunteer/${id}`);
+        toast.success(`Post Successfully Deleted`);
+        fetchData();
+    }catch(error) {
+        toast.error(error?.message);
+    }
+}
+
   return (
     <div className="flex lg:justify-center my-8 overflow-auto ">
       <Tabs>
