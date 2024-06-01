@@ -130,7 +130,7 @@ const Navbar = () => {
                 </li>
                 <li className="font-pacifico italic">
                   <NavLink
-                    to="/manageMyPost"
+                    to="/manageMyPosts"
                     className={({ isActive, isPending }) =>
                       isPending ? "pending" : isActive ? "text-orange-500" : "text-black"
                     }

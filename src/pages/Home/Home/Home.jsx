@@ -97,8 +97,8 @@ const Home = () => {
       {/* Need Volunteer Now Section  */}
       <div className="container mx-auto px-4 mt-12">
         <div className="mb-10 container mx-auto px-6 space-y-3">
-          <h1 className="uppercase font-pacifico text-orange-400">WE help Around the World</h1>
-          <p className="font-poetsen text-4xl">Volunteer Needs Now</p>
+          <h1 className="uppercase font-poetsen text-orange-400 text-sm">WE help Around the World</h1>
+          <p className="font-poetsen text-3xl md:text-5xl">Volunteer Needs Now</p>
         </div>
       <Carousel></Carousel>
       </div>
