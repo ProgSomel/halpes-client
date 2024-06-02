@@ -106,7 +106,7 @@ const ViewDetails = () => {
           </p>
           <p className="text-xl text-red-500 mb-6">
             <span className="font-pacifico">Deadline</span>:{" "}
-            <span className="font-poetsen">{volunteerPost?.deadline}</span>
+            <span className="font-poetsen">{new Date(volunteerPost?.deadline).toLocaleDateString()}</span>
           </p>
           <p className="text-lg leading-relaxed text-gray-100 mb-6 font-poetsen">
             {volunteerPost?.description}
@@ -222,7 +222,7 @@ const ViewDetails = () => {
                           type="text"
                           name="deadline"
                           className="p-2 border rounded w-full bg-gray-100"
-                          value={volunteerPost?.deadline}
+                          value={new Date(volunteerPost?.deadline).toLocaleDateString()}
                           readOnly
                         />
                       </div>

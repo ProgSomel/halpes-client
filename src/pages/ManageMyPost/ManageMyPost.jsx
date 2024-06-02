@@ -7,12 +7,16 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { useOutletContext } from "react-router-dom";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
   const [myVolunteerPosts, setMyVolunteerPosts] = useState([]);
   const [myVolunteerRequestPosts, setMyVolunteerRequestPosts] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
+
+  const { darkMode } = useOutletContext();
+
 
   useEffect(() => {
     fetchPostData();
@@ -192,7 +196,7 @@ const ManageMyPost = () => {
               <table className="table">
                 {/* head */}
                 <thead>
-                  <tr className="font-pacifico font-bold text-xl ">
+                  <tr className={`font-pacifico font-bold text-xl ${darkMode ? "text-white": ""}` }>
                     <th>Image</th>
                     <th>Title</th>
                     <th>Organizer Name</th>

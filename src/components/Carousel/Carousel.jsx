@@ -5,8 +5,10 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Carousel = () => {
+
+const Carousel = ({ darkMode }) => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [swiper, setSwiper] = useState(null);
 
@@ -60,11 +62,11 @@ const Carousel = () => {
       {volunteerPosts?.slice(0, 6).map((volunteer, index) => (
         <SwiperSlide key={index}>
           <div
-            className="card h-[500px]  bg-base-100 shadow-xl"
+            className={`card h-[530px] pt-4 bg-${darkMode ? 'text-black' : 'base-100'} shadow-xl`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <figure className="px-6 py-6 rounded-lg">
+            <figure className="px-6 py-6">
               <img
                 className="rounded-xl h-[200px] lg:h-[250px]"
                 src={volunteer?.thumbnail}
@@ -72,7 +74,7 @@ const Carousel = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title font-poetsen mb-5">
+              <h2 className={`card-title font-poetsen mb-5 ${darkMode ? 'text-black' : 'text-black'}`}>
                 {volunteer?.title}
               </h2>
 
@@ -82,14 +84,18 @@ const Carousel = () => {
                 </p>
                 <p className="font-pacifico">
                   <span className="text-red-400">Deadline</span> :{" "}
-                  {volunteer?.deadline}
+                  {new Date(volunteer?.deadline).toLocaleDateString()}
                 </p>
               </div>
               <div className="card-actions w-full mt-12">
-                <Link className="w-full" to={`/viewDetails/${volunteer?._id}`} state={volunteer?.title}>
-                <button className="btn bg-orange-400 text-white font-poetsen w-full hover:bg-orange-600">
-                  View Details
-                </button>
+                <Link
+                  className="w-full"
+                  to={`/viewDetails/${volunteer?._id}`}
+                  state={volunteer?.title}
+                >
+                  <button className="btn bg-orange-400 text-white font-poetsen w-full hover:bg-orange-600">
+                    View Details
+                  </button>
                 </Link>
               </div>
             </div>
@@ -98,6 +104,10 @@ const Carousel = () => {
       ))}
     </Swiper>
   );
+};
+Carousel.propTypes = {
+  darkMode: PropTypes.bool,
+
 };
 
 export default Carousel;
