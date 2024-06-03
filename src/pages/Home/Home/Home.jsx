@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import Carousel from "../../../components/Carousel/Carousel";
 
@@ -101,7 +101,15 @@ const Home = () => {
           <p className={` font-poetsen text-3xl md:text-5xl ${darkMode? "text-white": ""}`}>Volunteer Needs Now</p>
         </div>
         <Carousel />
+
+        <div  className="flex justify-center ">
+        <Link to="/needVolunteer">
+        <button className="btn border-2 bg-transparent text-orange-400 font-poetsen mt-8 border-orange-400 hover:bg-orange-600 hover:text-2xl">See All Post</button>
+        </Link>
+        </div>
+       
       </div>
+      
     </div>
   );
 };

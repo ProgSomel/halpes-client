@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 import swal from 'sweetalert';
 
@@ -11,6 +11,9 @@ const Registration = () => {
     const {createUser, updatingProfile, logOut} = useContext(AuthContext);
 
     const [showPassword, setShowPassword] = useState(false);
+
+  const { darkMode } = useOutletContext();
+
 
 
     const navigate = useNavigate(); 
@@ -74,7 +77,7 @@ const Registration = () => {
    
 
   return (
-    <div className="px-2 md:px-4 lg:px-8 my-12"> 
+    <div className={`px-2 md:px-4 lg:px-8 my-12 ${darkMode? "text-black": ""}`}> 
         <h1 className="text-center text-orange-500 italic text-5xl font-bold">Welcome</h1>
       <div className="max-w-md mx-auto mt-4 border-2 border-orange-200 p-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-lg shadow-md">
         <h2 className="text-3xl font-semibold text-white mb-4">Register</h2>
@@ -119,7 +122,7 @@ const Registration = () => {
         <p className="text-center text-white mt-4">
           Already have an account?{" "}
           <Link to="/login" className="text-yellow-300">
-            Login here
+            Login Here
           </Link>
         </p>
       </div>

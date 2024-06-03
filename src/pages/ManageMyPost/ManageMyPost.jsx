@@ -109,7 +109,6 @@ const ManageMyPost = () => {
         .then(async (result) => {
           if (result.isConfirmed) {
             await axios.delete(`http://localhost:5000/volunteer/${id}`);
-      toast.success(`Post Successfully Deleted`);
       fetchPostData();
             swalWithBootstrapButtons.fire({
               title: "Deleted!",
