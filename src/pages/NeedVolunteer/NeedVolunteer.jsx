@@ -48,7 +48,7 @@ const NeedVolunteer = () => {
             {searchedVolunteerPosts?.map((volunteerPost) => (
               <div
                 key={volunteerPost._id}
-                className="card h-[500px]  bg-base-100 shadow-xl"
+                className="card h-[530px] pt-4  bg-base-100 shadow-xl"
               >
                 <figure className="px-6 py-6 rounded-lg">
                   <img
@@ -93,7 +93,7 @@ const NeedVolunteer = () => {
             {volunteerPosts?.map((volunteerPost) => (
               <div
                 key={volunteerPost._id}
-                className="card h-[500px]  bg-base-100 shadow-xl"
+                className="card h-[530px] pt-4  bg-base-100 shadow-xl"
               >
                 <figure className="px-6 py-6 rounded-lg">
                   <img

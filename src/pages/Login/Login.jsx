@@ -7,6 +7,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/Lottie/login.json"
 import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
 /* eslint-disable react/no-unescaped-entities */
 const Login = () => {
   const { signIn, googleLogin, githubLogin } = useContext(AuthContext);
@@ -16,40 +17,36 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
 
     //! sign in
-    signIn(email, password)
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "You are successfully logged in!",
-          icon: "success",
-        });
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+    try{
+      const result = await signIn(email, password);
+      await axios.post('http://localhost:5000/jwt' , {email: result?.user?.email}, {withCredentials: true} );
+
+      toast.success('Successfully logged in');
+      navigate(location?.state ? location.state : "/");
+    }catch(error){
+      toast.error(error.message);
+    }
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "You are successfully logged in!",
-          icon: "success",
-        });
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+  const handleGoogleLogin = async() => {
+    
+
+    try{
+      const result =await googleLogin();
+       await axios.post('http://localhost:5000/jwt' , {email: result?.user?.email}, {withCredentials: true} );
+
+      toast.success('Successfully logged in');
+      navigate(location?.state ? location.state : "/");
+    }catch(error){
+      toast.error(error.message);
+    }
   };
 
   const handleGithubLogin = () => {
