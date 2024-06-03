@@ -86,9 +86,14 @@ const MainLayout = () => {
           </svg>
         </label>
       </div>
+    
+      <div>
+          {/* navbar  */}
       <div className="relative z-10">
-        <Navbar toggleTheme={toggleTheme} darkMode={darkMode} />
-        <div className={darkMode ? "bg-black  min-h-screen " : "min-h-screen "}>
+      <Navbar toggleTheme={toggleTheme} darkMode={darkMode} />
+
+      </div>
+        <div className={darkMode ? "  min-h-screen " : "min-h-screen "}>
           <Outlet darkMode={darkMode} context={{ darkMode }} />
         </div>
         <Footer />

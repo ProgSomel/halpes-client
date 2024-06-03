@@ -4,12 +4,12 @@ import logo from "../../assets/Icon/heart.png"
 const Footer = () => {
     return (
         <div className="mt-8">
-             <footer className="bg-gray-800 text-white py-8">
+             <footer className="bg-gray-800 text-white py-2">
       <div className="max-w-6xl mx-auto px-5 md:px-2">
-        <div className="flex flex-col md:flex-row md:px-4 justify-between items-center mt-5 gap-8">
-          <div className="w-full space-y-4 md:w-1/2 lg:w-1/4 mb-8">
+        <div className="flex flex-col md:flex-row md:px-4 justify-between items-center  gap-8">
+          <div className="w-full space-y-3 md:w-1/2 lg:w-1/4 mb-8">
             <img className="text-white" src={logo} alt="" />
-            <p>Discover breathtaking destinations, plan your dream trip, and embark on unforgettable adventures. Whether you're seeking a relaxing beach getaway, an exhilarating mountain trek, or a cultural immersion in vibrant cities, we've got you covered.</p>
+            <p>At Halpes, we believe in the power of community and the impact of collective action. Our platform connects passionate volunteers with meaningful opportunities to contribute to causes they care about. Whether you’re looking to lend a hand in local events, support educational programs, or participate in environmental conservation projects, there’s a place for you here.</p>
             <p className="text-green-500 font-bold">Working Day: Monday - Friday (9AM - 5PM)</p>
 
 
@@ -59,31 +59,31 @@ const Footer = () => {
           <div className="">
             <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
             <ul>
-              <li>Guide</li>
-              <li>Blog Standard</li>
+             
+              <li>Blog</li>
               <li>Contact Us</li>
-              <li>Destination</li>
+              <li>Volunteer Need Post</li>
               <li>FAQ</li>
               <li>Gallery</li>
             </ul>
           </div>
           <div className="">
-            <h3 className="text-2xl font-bold mb-4">Tour Type</h3>
+            <h3 className="text-2xl font-bold mb-4">Volunteer Need Type</h3>
             <ul>
-              <li>City Tour</li>
-              <li>Hill Town</li>
-              <li>Family</li>
-              <li>Adventure</li>
-              <li>Escorted Tour</li>
-              <li>Couple</li>
+              <li>Education</li>
+              <li>Healthcare</li>
+              <li>Social Service</li>
+              <li>Animal Welfare</li>
+              <li>Cleaning</li>
+              
             </ul>
           </div>
           <div className=" text-center">
           <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
           <p>+880-566-1111-985</p>
           <p>+880-657-1111-576</p>
-          <p>info@example.com</p>
-          <p>info@support.com</p>
+          <p>info@halpes.com</p>
+          <p>support@halpes.com</p>
           <p>168/170, Avenue 01</p>
           <p>Mirpur DOHS, Bangladesh</p>
         </div>

@@ -8,13 +8,11 @@ export default {
     extend: {
       fontFamily: {
         poetsen: "'Poetsen One', sans-serif",
-        pacifico: "'Pacifico', sans-serif"
-
-      }
+        pacifico: "'Pacifico', sans-serif",
+      },
     },
   },
   plugins: [
     require('daisyui'),
   ],
 }
-
