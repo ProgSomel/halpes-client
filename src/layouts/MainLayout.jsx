@@ -44,8 +44,8 @@ const MainLayout = () => {
       <div
         className={`hidden lg:flex cursor-pointer place-items-center absolute top-9 z-50 ${
           darkMode
-            ? "left-[100px] md:left-[300px] lg:left-[900px] top-[60px] md:top-9"
-            : "left-[100px] md:left-[300px] lg:left-[900px] top-[60px] md:top-9"
+            ? "left-[100px] md:left-[300px] lg:left-[900px] top-[60px] md:top-[35px]"
+            : "left-[100px] md:left-[300px] lg:left-[900px] top-[60px] md:top-[35px]"
         }`}
       >
         <label className="cursor-pointer grid place-items-center">

@@ -179,9 +179,9 @@ const ManageMyPost = () => {
   };
 
   return (
-    <div className="flex lg:justify-center my-8 overflow-auto ">
+    <div className="flex md:justify-center my-8 overflow-auto ">
       <Tabs>
-        <TabList className=" flex  md:justify-center  mb-12 border-b-2">
+        <TabList className=" flex  justify-center  mb-12 border-b-2">
           <div className="flex bg-orange-200 ">
             <Tab>
               <h1 className="font-poetsen text-orange-600">

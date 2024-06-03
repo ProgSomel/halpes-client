@@ -55,9 +55,10 @@ const NeedVolunteer = () => {
       </form>
 
       {changeLayout ? (
-        <div>
+        <div className="max-w-6xl mx-auto pl-0 lg:pl-12 ">
+        
           {searchedVolunteerPosts.length > 0 ? (
-             <div className="overflow-x-auto flex justify-center text-center">
+             <div className="overflow-x-auto ">
              <table className="table">
                {/* head */}
                <thead>
@@ -92,7 +93,7 @@ const NeedVolunteer = () => {
                    <td>{volunteerPost?.title}</td>
                    <td>{volunteerPost?.category}</td>
                    <td>{new Date(volunteerPost?.deadline).toLocaleDateString()}</td>
-                   <td>
+                   <td className="">
                    <Link
                          className=""
                          to={`/viewDetails/${volunteerPost?._id}`}
