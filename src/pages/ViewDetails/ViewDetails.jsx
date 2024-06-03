@@ -13,7 +13,7 @@ const ViewDetails = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/volunteer/${id}`
+          `http://localhost:5000/volunteer/${id}`, {withCredentials: true}
         );
         setVolunteerPost(data);
       } catch (error) {

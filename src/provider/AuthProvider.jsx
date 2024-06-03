@@ -13,12 +13,14 @@ import {
 import { app } from "../firebase/firebase.config";
 // import axios from "axios";
 import { GithubAuthProvider } from "firebase/auth/cordova";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
-const githubprovider = new GithubAuthProvider();``
-
+const githubprovider = new GithubAuthProvider();
+``;
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -39,17 +41,20 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  //! Github login 
+  //! Github login
   const githubLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, githubprovider);
-}
+  };
 
   const logOut = async () => {
     setLoading(true);
-    // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-    //   withCredentials: true
-    // });
+    const {data} = await axios.get(`http://localhost:5000/logout`, {
+      withCredentials: true,
+    });
+    if(data) {
+      toast.success('Logged out successfully')
+    }
     return signOut(auth);
   };
 
@@ -81,7 +86,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     logOut,
     updatingProfile,
-    githubLogin
+    githubLogin,
   };
 
   return (

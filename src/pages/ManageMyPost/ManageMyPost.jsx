@@ -7,7 +7,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import { useOutletContext } from "react-router-dom";
+import {  useOutletContext } from "react-router-dom";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
@@ -25,18 +25,29 @@ const ManageMyPost = () => {
   }, [user?.email]);
 
   const fetchPostData = async () => {
-    const { data } = await axios.get(
-        `http://localhost:5000/volunteer/volunteerByEmail/${user?.email}`
+    try{
+       const {data} = await axios.get(
+        `http://localhost:5000/volunteer/volunteerByEmail/${user?.email}`, {withCredentials: true}
       );
+      
     setMyVolunteerPosts(data);
+    }catch(error){
+      toast.error(error?.message);
+    }
   };
 
   const fetchRequestPostData = async () => {
     
+   try{
     const { data } = await axios.get(
-        `http://localhost:5000/beAvolunteer/${user?.email}`
-      );
-    setMyVolunteerRequestPosts(data);
+      `http://localhost:5000/beAvolunteer/${user?.email}`, {withCredentials: true}
+    );
+  setMyVolunteerRequestPosts(data);
+   }catch(error) {
+    toast.error(error?.message);
+
+    
+   }
   };
 
   //!   handle Update
