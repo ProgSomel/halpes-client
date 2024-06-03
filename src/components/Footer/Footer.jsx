@@ -3,7 +3,7 @@ import logo from "../../assets/Icon/heart.png"
 
 const Footer = () => {
     return (
-        <div>
+        <div className="mt-8">
              <footer className="bg-gray-800 text-white py-8">
       <div className="max-w-6xl mx-auto px-5 md:px-2">
         <div className="flex flex-col md:flex-row md:px-4 justify-between items-center mt-5 gap-8">

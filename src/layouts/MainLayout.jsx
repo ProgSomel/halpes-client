@@ -10,7 +10,23 @@ const MainLayout = () => {
   useEffect(() => {
     if (location?.pathname === "/") {
       document.title = `Home`;
-    } else {
+    }
+    else if (location.pathname === "/needVolunteer") {
+      document.title = 'Need - Volunteer';
+    }
+    else if (location.pathname === "/addVolunteer") {
+      document.title = `Add - Volunteer`;
+    }
+    else if (location.pathname === "/manageMyPosts") {
+      document.title = `Manage - My Posts`;
+    } 
+    else if (location.pathname === "/login") {
+      document.title = `Login`;
+    } 
+    else if (location.pathname === "/register") {
+      document.title = `Register`;
+    } 
+    else {
       document.title = `${location.pathname.replace("/", "")}`;
     }
     if (location.state) {
@@ -72,12 +88,8 @@ const MainLayout = () => {
       </div>
       <div className="relative z-10">
         <Navbar toggleTheme={toggleTheme} darkMode={darkMode} />
-        <div
-          className={
-            darkMode ? "bg-black  min-h-screen" : "min-h-screen"
-          }
-        >
-          <Outlet darkMode={darkMode}  context={{ darkMode }} />
+        <div className={darkMode ? "bg-black  min-h-screen " : "min-h-screen "}>
+          <Outlet darkMode={darkMode} context={{ darkMode }} />
         </div>
         <Footer />
       </div>
