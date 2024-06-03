@@ -7,7 +7,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import {  useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const ManageMyPost = () => {
   const { user } = useContext(AuthContext);
@@ -17,37 +17,34 @@ const ManageMyPost = () => {
 
   const { darkMode } = useOutletContext();
 
-
   useEffect(() => {
     fetchPostData();
     fetchRequestPostData();
-
   }, [user?.email]);
 
   const fetchPostData = async () => {
-    try{
-       const {data} = await axios.get(
-        `http://localhost:5000/volunteer/volunteerByEmail/${user?.email}`, {withCredentials: true}
+    try {
+      const { data } = await axios.get(
+        `https://halpes-server.vercel.app/volunteer/volunteerByEmail/${user?.email}`,
+        { withCredentials: true }
       );
-      
-    setMyVolunteerPosts(data);
-    }catch(error){
+
+      setMyVolunteerPosts(data);
+    } catch (error) {
       toast.error(error?.message);
     }
   };
 
   const fetchRequestPostData = async () => {
-    
-   try{
-    const { data } = await axios.get(
-      `http://localhost:5000/beAvolunteer/${user?.email}`, {withCredentials: true}
-    );
-  setMyVolunteerRequestPosts(data);
-   }catch(error) {
-    toast.error(error?.message);
-
-    
-   }
+    try {
+      const { data } = await axios.get(
+        `https://halpes-server.vercel.app/beAvolunteer/${user?.email}`,
+        { withCredentials: true }
+      );
+      setMyVolunteerRequestPosts(data);
+    } catch (error) {
+      toast.error(error?.message);
+    }
   };
 
   //!   handle Update
@@ -74,7 +71,7 @@ const ManageMyPost = () => {
     };
     try {
       const response = await axios.put(
-        `http://localhost:5000/volunteer/updatePost/${id}`,
+        `https://halpes-server.vercel.app/volunteer/updatePost/${id}`,
         updateVolunteerData
       );
       if (response) {
@@ -108,8 +105,10 @@ const ManageMyPost = () => {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            await axios.delete(`http://localhost:5000/volunteer/${id}`);
-      fetchPostData();
+            await axios.delete(
+              `https://halpes-server.vercel.app/volunteer/${id}`
+            );
+            fetchPostData();
             swalWithBootstrapButtons.fire({
               title: "Deleted!",
               text: "Your Post has been deleted.",
@@ -126,7 +125,6 @@ const ManageMyPost = () => {
             });
           }
         });
-      
     } catch (error) {
       toast.error(error?.message);
     }
@@ -153,9 +151,11 @@ const ManageMyPost = () => {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            await axios.delete(`http://localhost:5000/beAVolunteer/${id}`);
-      toast.success(`Request Successfully Cancelled`);
-      fetchRequestPostData();
+            await axios.delete(
+              `https://halpes-server.vercel.app/beAVolunteer/${id}`
+            );
+            toast.success(`Request Successfully Cancelled`);
+            fetchRequestPostData();
             swalWithBootstrapButtons.fire({
               title: "Cancelled!",
               text: "Your Request has been cancelled.",
@@ -172,7 +172,6 @@ const ManageMyPost = () => {
             });
           }
         });
-      
     } catch (error) {
       toast.error(error?.message);
     }
@@ -190,7 +189,7 @@ const ManageMyPost = () => {
             </Tab>
             <Tab>
               <h1 className="font-poetsen text-orange-600">
-                My  Volunteer Request Post
+                My Volunteer Request Post
               </h1>
             </Tab>
           </div>
@@ -206,7 +205,11 @@ const ManageMyPost = () => {
               <table className="table">
                 {/* head */}
                 <thead>
-                  <tr className={`font-pacifico font-bold text-xl ${darkMode ? "text-white": ""}` }>
+                  <tr
+                    className={`font-pacifico font-bold text-xl ${
+                      darkMode ? "text-white" : ""
+                    }`}
+                  >
                     <th>Image</th>
                     <th>Title</th>
                     <th>Organizer Name</th>
@@ -422,7 +425,9 @@ const ManageMyPost = () => {
         <TabPanel className="">
           {myVolunteerRequestPosts.length <= 0 ? (
             <div className="flex justify-center mt-8">
-              <h1 className="font-poetsen text-2xl">You don't have any Request for  post</h1>
+              <h1 className="font-poetsen text-2xl">
+                You don't have any Request for post
+              </h1>
             </div>
           ) : (
             <div className="overflow-x-auto mt-5 ">
@@ -459,7 +464,7 @@ const ManageMyPost = () => {
                       <td className="font-poetsen">
                         {volunteerPost?.organizerEmail}
                       </td>
-                     
+
                       <td>
                         <button
                           onClick={() => handleCancel(volunteerPost?._id)}

@@ -34,8 +34,9 @@ const AddVolunteer = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:5000/volunteer",
-        volunteerData, {withCredentials: true}
+        "https://halpes-server.vercel.app/volunteer",
+        volunteerData,
+        { withCredentials: true }
       );
       if (response.data) {
         Swal.fire({

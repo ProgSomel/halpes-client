@@ -49,11 +49,14 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true);
-    const {data} = await axios.get(`http://localhost:5000/logout`, {
-      withCredentials: true,
-    });
-    if(data) {
-      toast.success('Logged out successfully')
+    const { data } = await axios.get(
+      `https://halpes-server.vercel.app/logout`,
+      {
+        withCredentials: true,
+      }
+    );
+    if (data) {
+      toast.success("Logged out successfully");
     }
     return signOut(auth);
   };

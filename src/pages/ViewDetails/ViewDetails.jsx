@@ -13,7 +13,8 @@ const ViewDetails = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/volunteer/${id}`, {withCredentials: true}
+          `https://halpes-server.vercel.app/volunteer/${id}`,
+          { withCredentials: true }
         );
         setVolunteerPost(data);
       } catch (error) {
@@ -61,21 +62,19 @@ const ViewDetails = () => {
       toast.error("You Are the Organizer");
       return;
     }
-    if(parseInt(volunteerPost?.numberOfVolunteersNeeded) <=0) {
+    if (parseInt(volunteerPost?.numberOfVolunteersNeeded) <= 0) {
       toast.error("Already Filled Up. No More Volunteer Needed");
       return;
     }
 
     try {
-      const {data} = await axios.post(
-        "http://localhost:5000/beAvolunteer",
+      const { data } = await axios.post(
+        "https://halpes-server.vercel.app/beAvolunteer",
         beAVolunteerData
       );
       if (data) {
         toast.success("Successfully Requested");
-
       }
-     
     } catch (error) {
       toast.error(`Already Requested: ${error.message}`);
     }
@@ -91,7 +90,6 @@ const ViewDetails = () => {
       <div className="card bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 shadow-lg rounded-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-100">
         <figure className="w-full h-[200px] sm:h-[400px] overflow-hidden">
           <img
-          
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
             src={volunteerPost?.thumbnail}
             alt={volunteerPost?.title}
@@ -106,7 +104,9 @@ const ViewDetails = () => {
           </p>
           <p className="text-xl text-red-500 mb-6">
             <span className="font-pacifico">Deadline</span>:{" "}
-            <span className="font-poetsen">{new Date(volunteerPost?.deadline).toLocaleDateString()}</span>
+            <span className="font-poetsen">
+              {new Date(volunteerPost?.deadline).toLocaleDateString()}
+            </span>
           </p>
           <p className="text-lg leading-relaxed text-gray-100 mb-6 font-poetsen">
             {volunteerPost?.description}
@@ -222,7 +222,9 @@ const ViewDetails = () => {
                           type="text"
                           name="deadline"
                           className="p-2 border rounded w-full bg-gray-100"
-                          value={new Date(volunteerPost?.deadline).toLocaleDateString()}
+                          value={new Date(
+                            volunteerPost?.deadline
+                          ).toLocaleDateString()}
                           readOnly
                         />
                       </div>

@@ -7,14 +7,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-
 const Carousel = ({ darkMode }) => {
   const [volunteerPosts, setVolunteerPosts] = useState([]);
   const [swiper, setSwiper] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("http://localhost:5000/volunteer");
+      const { data } = await axios.get(
+        "https://halpes-server.vercel.app/volunteer"
+      );
       setVolunteerPosts(data);
     };
     fetchData();
@@ -62,7 +63,9 @@ const Carousel = ({ darkMode }) => {
       {volunteerPosts?.slice(0, 6).map((volunteer, index) => (
         <SwiperSlide key={index}>
           <div
-            className={`card h-[530px] pt-4 bg-${darkMode ? 'text-black' : 'base-100'} shadow-xl`}
+            className={`card h-[530px] pt-4 bg-${
+              darkMode ? "text-black" : "base-100"
+            } shadow-xl`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -74,7 +77,11 @@ const Carousel = ({ darkMode }) => {
               />
             </figure>
             <div className="card-body">
-              <h2 className={`card-title font-poetsen mb-5 ${darkMode ? 'text-black' : 'text-black'}`}>
+              <h2
+                className={`card-title font-poetsen mb-5 ${
+                  darkMode ? "text-black" : "text-black"
+                }`}
+              >
                 {volunteer?.title}
               </h2>
 
@@ -107,7 +114,6 @@ const Carousel = ({ darkMode }) => {
 };
 Carousel.propTypes = {
   darkMode: PropTypes.bool,
-
 };
 
 export default Carousel;

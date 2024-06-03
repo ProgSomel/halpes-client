@@ -10,7 +10,9 @@ const NeedVolunteer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("http://localhost:5000/volunteer");
+      const { data } = await axios.get(
+        "https://halpes-server.vercel.app/volunteer"
+      );
       setVolunteerPosts(data);
     };
     fetchData();
@@ -22,7 +24,7 @@ const NeedVolunteer = () => {
     const searchText = form.search.value;
 
     const { data } = await axios.get(
-      `http://localhost:5000/volunteer?search=${searchText}`
+      `https://halpes-server.vercel.app/volunteer?search=${searchText}`
     );
 
     setsearchedVolunteerPosts(data);
@@ -43,7 +45,6 @@ const NeedVolunteer = () => {
             placeholder="title"
           />
           <button
-          
             type="submit"
             className="btn join-item rounded-r-lg bg-orange-300 text-white font-poetsen"
           >
@@ -51,126 +52,114 @@ const NeedVolunteer = () => {
           </button>
         </div>
 
-        <div className="flex justify-center lg:justify-normal"><button onClick={()=>setChangeLayout(!changeLayout)} className="btn border border-orange-400 bg-transparent font-poetsen text-orange-400">Change Layout</button></div>
+        <div className="flex justify-center lg:justify-normal">
+          <button
+            onClick={() => setChangeLayout(!changeLayout)}
+            className="btn border border-orange-400 bg-transparent font-poetsen text-orange-400"
+          >
+            Change Layout
+          </button>
+        </div>
       </form>
 
       {changeLayout ? (
         <div className="max-w-6xl mx-auto pl-0 lg:pl-12 ">
-        
           {searchedVolunteerPosts.length > 0 ? (
-             <div className="overflow-x-auto ">
-             <table className="table">
-               {/* head */}
-               <thead>
-                 <tr>
-                  
-                   <th>Image</th>
-                   <th>Title</th>
-                   <th>Category</th>
-                   <th>Deadline</th>
-                   <th>Details</th>
-                 </tr>
-               </thead>
-               <tbody>
-                
-                {
-                 searchedVolunteerPosts?.map((volunteerPost) =>(
-                   <tr key={volunteerPost?._id}>
-                 
-                   <td>
-                     <div className="flex items-center gap-3">
-                       <div className="avatar">
-                         <div className="mask mask-squircle w-12 h-12">
-                           <img
-                             src={volunteerPost?.thumbnail}
-                             alt="Avatar Tailwind CSS Component"
-                           />
-                         </div>
-                       </div>
-                     
-                     </div>
-                   </td>
-                   <td>{volunteerPost?.title}</td>
-                   <td>{volunteerPost?.category}</td>
-                   <td>{new Date(volunteerPost?.deadline).toLocaleDateString()}</td>
-                   <td className="">
-                   <Link
-                         className=""
-                         to={`/viewDetails/${volunteerPost?._id}`}
-                       >
-                         <button className="btn w-[70px]  bg-orange-400 text-white font-poetsen  hover:bg-orange-600  border-1">
-                           View Details
-                         </button>
-                       </Link>
-                   </td>
-                 </tr>
-                 ))
-                }
-               
-              
-               
-               </tbody>
-             
-              
-             </table>
-           </div>
+            <div className="overflow-x-auto ">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Deadline</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {searchedVolunteerPosts?.map((volunteerPost) => (
+                    <tr key={volunteerPost?._id}>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img
+                                src={volunteerPost?.thumbnail}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{volunteerPost?.title}</td>
+                      <td>{volunteerPost?.category}</td>
+                      <td>
+                        {new Date(volunteerPost?.deadline).toLocaleDateString()}
+                      </td>
+                      <td className="">
+                        <Link
+                          className=""
+                          to={`/viewDetails/${volunteerPost?._id}`}
+                        >
+                          <button className="btn w-[70px]  bg-orange-400 text-white font-poetsen  hover:bg-orange-600  border-1">
+                            View Details
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
             <div className="overflow-x-auto flex justify-center text-center">
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                 
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Category</th>
-                  <th>Deadline</th>
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-               
-               {
-                volunteerPosts?.map((volunteerPost) =>(
-                  <tr key={volunteerPost?._id}>
-                
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={volunteerPost?.thumbnail}
-                            alt="Avatar Tailwind CSS Component"
-                          />
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Deadline</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {volunteerPosts?.map((volunteerPost) => (
+                    <tr key={volunteerPost?._id}>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img
+                                src={volunteerPost?.thumbnail}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    
-                    </div>
-                  </td>
-                  <td>{volunteerPost?.title}</td>
-                  <td>{volunteerPost?.category}</td>
-                  <td>{new Date(volunteerPost?.deadline).toLocaleDateString()}</td>
-                  <td>
-                  <Link
-                        className=""
-                        to={`/viewDetails/${volunteerPost?._id}`}
-                      >
-                        <button className="btn w-[70px]  bg-orange-400 text-white font-poetsen  hover:bg-orange-600  border-1">
-                          View Details
-                        </button>
-                      </Link>
-                  </td>
-                </tr>
-                ))
-               }
-              
-             
-              
-              </tbody>
-            
-             
-            </table>
-          </div>
+                      </td>
+                      <td>{volunteerPost?.title}</td>
+                      <td>{volunteerPost?.category}</td>
+                      <td>
+                        {new Date(volunteerPost?.deadline).toLocaleDateString()}
+                      </td>
+                      <td>
+                        <Link
+                          className=""
+                          to={`/viewDetails/${volunteerPost?._id}`}
+                        >
+                          <button className="btn w-[70px]  bg-orange-400 text-white font-poetsen  hover:bg-orange-600  border-1">
+                            View Details
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       ) : (

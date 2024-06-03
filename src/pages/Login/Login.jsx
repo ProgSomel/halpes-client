@@ -1,5 +1,10 @@
 import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
@@ -17,7 +22,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { darkMode } = useOutletContext();
 
-
   const handleLogin = async (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -28,7 +32,7 @@ const Login = () => {
     try {
       const result = await signIn(email, password);
       await axios.post(
-        "http://localhost:5000/jwt",
+        "https://halpes-server.vercel.app/jwt",
         { email: result?.user?.email },
         { withCredentials: true }
       );
@@ -44,7 +48,7 @@ const Login = () => {
     try {
       const result = await googleLogin();
       await axios.post(
-        "http://localhost:5000/jwt",
+        "https://halpes-server.vercel.app/jwt",
         { email: result?.user?.email },
         { withCredentials: true }
       );
@@ -56,10 +60,8 @@ const Login = () => {
     }
   };
 
-  
-
   return (
-    <div className={`mt-12 container mx-auto ${darkMode ? "text-black": ""}`}>
+    <div className={`mt-12 container mx-auto ${darkMode ? "text-black" : ""}`}>
       <h1 className="text-center text-orange-500 italic text-5xl font-bold">
         Welcome Back
       </h1>
@@ -113,9 +115,9 @@ const Login = () => {
               <div className="">
                 <h1 className=" text-white">
                   <span className="block font-pacifico">Or</span>
-                  <span className="font-poetsen">login with</span> 
+                  <span className="font-poetsen">login with</span>
                 </h1>
-                
+
                 <div className="mt-3">
                   <button
                     onClick={handleGoogleLogin}
